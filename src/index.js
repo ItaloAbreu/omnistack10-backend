@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv/config');
 
+const routes = require('./routes');
+
 const app = express();
 
 mongoose.connect(
@@ -11,10 +13,6 @@ mongoose.connect(
 });
 
 app.use(express.json());
-
-app.post('/users', (req, res) => {
-  console.log(req.body);
-  return res.json({ message:  'Hello Omnistack'});
-});
+app.use(routes);
 
 app.listen(3333);
